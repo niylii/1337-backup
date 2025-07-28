@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouhiyli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 13:53:23 by nouhiyli          #+#    #+#             */
-/*   Updated: 2025/07/24 12:45:52 by nouhiyli         ###   ########.fr       */
+/*   Created: 2025/07/26 17:32:12 by nouhiyli          #+#    #+#             */
+/*   Updated: 2025/07/27 19:12:29 by nouhiyli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+unsigned int	ft_strlen(char *str)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (i < n && src[i])
-	{
-		dest[i] = src[i];
+	while (str[i])
 		i++;
-	}
-	while (i < n)
+	return (i);
+}
+
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+{
+	unsigned int	i;
+	unsigned int	s_len;
+	unsigned int	d_len;
+	unsigned int	tmp;
+
+	i = 0;
+	s_len = ft_strlen(src);
+	d_len = ft_strlen(dest);
+	tmp = ft_strlen(dest);
+	if (d_len >= size)
+		return (s_len + size);
+	while (src[i] && i < size - d_len - 1)
 	{
-		dest[i] = '\0';
+		dest[tmp] = src[i];
 		i++;
+		tmp++;
 	}
-	return (dest);
+	dest[tmp] = '\0';
+	return (s_len + d_len);
 }

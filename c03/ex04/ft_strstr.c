@@ -6,28 +6,31 @@
 /*   By: nouhiyli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 21:27:09 by nouhiyli          #+#    #+#             */
-/*   Updated: 2025/07/25 22:34:14 by nouhiyli         ###   ########.fr       */
+/*   Updated: 2025/07/27 19:03:48 by nouhiyli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int	ft_strncmp(char *s1, char *s2)
-{
-	while (*s1 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return (*s1 - *s2);
-}
 
 char	*ft_strstr(char *str, char *to_find)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	if (to_find[0] == '\0')
+		return (str);
 	while (str[i])
 	{
-		;
+		j = 0;
+		if (to_find[j] == str[i])
+		{
+			while (to_find[j] == str[i + j] && to_find[j])
+			{
+				j++;
+			}
+			if (to_find[j] == '\0')
+				return (&str[i]);
+		}
+		i++;
 	}
-	return ();
+	return (0);
 }

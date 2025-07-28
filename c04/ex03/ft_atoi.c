@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouhiyli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 10:13:50 by nouhiyli          #+#    #+#             */
-/*   Updated: 2025/07/22 10:59:06 by nouhiyli         ###   ########.fr       */
+/*   Created: 2025/07/27 11:08:39 by nouhiyli          #+#    #+#             */
+/*   Updated: 2025/07/28 10:28:37 by nouhiyli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
+	int	nb;
+	int	signe;
 
 	i = 0;
-	while (str[i])
+	nb = 0;
+	signe = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	while (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] -= 32;
+		if (str[i] == '-')
+			signe *= -1;
 		i++;
 	}
-	return (str);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (nb * 10) + (str[i] - '0');
+		i++;
+	}
+	return (nb * signe);
 }
